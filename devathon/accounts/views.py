@@ -17,3 +17,6 @@ def my_view(request):
 
 def dashboard(request):
     return render(request, 'accounts/dashboard.html')
+
+def order(request):
+    return render(request, 'accounts/order.html')
