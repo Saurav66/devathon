@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,19 +8,14 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="jumbotron">
-        
-    <form>
-        <div class="form-group">
-          <label for="regid">Registration No</label>
-          <input type="number" class="form-control" id="regid" >
-        </div>
-        <div class="form-group">
-          <label for="exampleInputPassword1">Password</label>
-          <input type="password" class="form-control" id="exampleInputPassword1">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-    </div>
+  <div class="container">
+    <h1 style="text-align:center; font-family: 'Ubuntu', sans-serif;">Log In</h1>
+    <form  method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input style="filter: none;animation: none;" type="submit" value="Log In" class="btn btn-success">
+        <!-- the action is specified  in LOGIN_REDIRECT_URL variable in setting.py  -->
+    </form>
+</div>
 </body>
 </html>
