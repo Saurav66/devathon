@@ -13,3 +13,7 @@ def my_view(request):
     else:
         # Return an 'invalid login' error message.
         ...
+
+
+def dashboard(request):
+    return render(request, 'accounts/dashboard.html')

@@ -1,21 +1,20 @@
-<!DOCTYPE html>
+{% extends 'accounts/base.html' %}
 {% load static %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <title>Document</title>
-</head>
-<body>
-  <div class="container">
-    <h1 style="text-align:center; font-family: 'Ubuntu', sans-serif;">Log In</h1>
-    <form  method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input style="filter: none;animation: none;" type="submit" value="Log In" class="btn btn-success">
-        <!-- the action is specified  in LOGIN_REDIRECT_URL variable in setting.py  -->
+{% block title%}Login{% endblock %}
+{% block css%}
+<link href="{% static 'accounts/login/style.css' %}" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+<form class="form-signin">
+    {% csrf_token %}
+      <h1 class="h3 mb-3 font-weight-normal">Please Login</h1>
+      <label class="sr-only">Registration number</label>
+      <input type="text" id="inputRegistrationNumber" class="form-control" placeholder="RegistrationNumber" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
     </form>
-</div>
-</body>
-</html>
+
+
+{% endblock %}
