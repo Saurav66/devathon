@@ -20,10 +20,8 @@ import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TEMP_DIR = os.path.join(BASE_DIR,"templates")
+TEMP_DIR = os.path.join(BASE_DIR, "templates")
 print(TEMP_DIR)
-
-
 
 
 # Quick-start development settings - unsuitable for production
@@ -48,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accounts',
+    'vendor',
 ]
 
 MIDDLEWARE = [
@@ -65,7 +64,7 @@ ROOT_URLCONF = 'devathon.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMP_DIR,],
+        'DIRS': [TEMP_DIR, ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,6 +129,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [os.path.join(BASE_DIR,"static"),]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 
 LOGIN_REDIRECT_URL = 'accounts:done'
