@@ -43,25 +43,9 @@
   </div>
   <form class="form-signin" method="POST">
     {% csrf_token %}
-
     <div class="form-group">
       <div class="container">
-        {% for extraItem in extraItems %}
-        <div class="row m-2 border-bottom">
-          <div class="col-3"><label>{{extraItem.item_name}} </label></div>
-          <div class="col-1"><label class="badge badge-secondary p-2">Rs. {{extraItem.item_cost}} </label></div>
-          <div class="col-4">
-            <label>Q : </label>
-            <input class="mr-2" type="number" name="{{extraItem.item_name}}" min="0" max="9" value=0 />
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="container">
-        <button type="submit">Order Now</button>
+        <button type="submit">Order Coupon</button>
         <div class="container"></div>
       </div>
   </form>

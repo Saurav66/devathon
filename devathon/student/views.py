@@ -93,29 +93,17 @@ def placeOrder(request):
         "extraItems": extraItems,
     }
     if (request.method == "POST"):
-        quantity = 0
-        for item in request.POST:
-            if item != 'csrfmiddlewaretoken':
-                try:
-                    found = get_object_or_404(
-                        ExtraItems, item_name=item)
-                    quantity += int(request.POST[item])
-                except:
-                    pass
-        if quantity > 0:
-            user = request.user
-            otp = generate_otp();
-            
-            studentObj = Student.objects.filter(user=user)[0]
-            userEmail = studentObj.email
+        user = request.user
+        otp = generate_otp();
+        
+        studentObj = Student.objects.filter(user=user)[0]
+        userEmail = studentObj.email
 
-            if sendEmail(userEmail, otp):
-                studentObj.pass_code = otp
-                studentObj.save()
-                print("successful")
-                content['statusSuccess'] = True
-            else:
-                content['statusFail'] = True
+        if sendEmail(userEmail, otp):
+            studentObj.pass_code = otp
+            studentObj.save()
+            print("successful")
+            content['statusSuccess'] = True
         else:
-            print("quant = ", quantity)
+            content['statusFail'] = True
     return render(request, 'student/order.html', content)
