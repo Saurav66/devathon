@@ -20,7 +20,12 @@ from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+<<<<<<< HEAD
    path('accounts/',include('accounts.urls',namespace='accounts')),
    path('login/',include('login.urls',namespace='login')),
  
+=======
+    path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('vendor/', include('vendor.urls', namespace='vendor')),
+>>>>>>> 5d5cb851e97d24683abef91dd37af188786079a1
 ]
