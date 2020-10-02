@@ -1,41 +1,45 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
-from django.contrib import messages
-from django.http import HttpResponse
-from django.contrib.auth import logout, authenticate, login
+from django.shortcuts import render,HttpResponse,redirect
+from django.contrib.auth import authenticate, login,logout
+from django.urls import reverse
+from student.models import Student
 
-# Create your views here.
-def index(request):
-    print(request.user)
-    if request.user.is_anonymous:
-        return redirect("/login/student/") 
-    return render(request, 'accounts/student/index.html')
+from django.contrib.auth.decorators import login_required
 
 
-def home(request):
+def user_login(request):
     if request.user.is_authenticated:
-        return render(request, 'accounts/student/index.html')
-    return redirect("/accounts/student/")
-
-def handleLogin(request):
-    if request.method == 'POST':
-        # Get the post parameters
-        loginusername = request.POST['loginusername']
-        loginpassword = request.POST['loginpassword']
-
-        user = authenticate(username=loginusername, password=loginpassword)
-
-        if user is not None:
-            login(request, user)
-            messages.success(request, "Successfully Logged In")
-            return redirect("/accounts/home/")
+        try:
+            Student.objects.get(user=request.user)
+            return redirect('student:dashboard')
+        except:
+            return redirect('vendor:dashboard')
+     
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        user = authenticate(username=username, password=password)
+        #print(user.password)
+        if user is not None :
+            if user.is_active:
+                login(request, user)
+                print("hvedu")
+                try:
+                    Student.objects.get(user=user)
+                    return redirect('student:dashboard')
+                except:
+                    return redirect('vendor:dashboard')
+                
+            else:
+                return HttpResponse('h1You are not an Active user')
         else:
-            messages.error(request, "Invalid Credentials, Please try again")
-            return redirect("/accounts/student/")
-            
-    return HttpResponse('404 - Not Found')
+            return HttpResponse('Please input the correct details')
+    return render(request,'accounts/login.html')
 
-def handleLogout(request): 
+
+@login_required
+def user_logout(request):
     logout(request)
-    messages.success(request, "Successfully Logged Out")
-    return redirect("/accounts/student/")
+    return redirect("accounts:login")
+
+

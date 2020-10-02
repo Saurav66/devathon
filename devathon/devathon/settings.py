@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'accounts',
     'vendor',
+    'student',
 ]
 
 MIDDLEWARE = [
@@ -131,4 +132,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static"), ]
 
-LOGIN_REDIRECT_URL = 'accounts:done'
+LOGIN_REDIRECT_URL = 'student:dashboard'
+
+LOGIN_URL = '/'
+
+

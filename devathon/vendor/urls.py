@@ -1,10 +1,10 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
-from . import views
+from .views import *
 
 app_name = 'vendor'
 
 urlpatterns = [
-    path('dashboard/', views.dashboard, name="dashboard"),
-    path('order/', views.order, name="order"),
+    path('dashboard/',token_list, name="dashboard"),
+    path('order/',order, name="order"),
 ]
