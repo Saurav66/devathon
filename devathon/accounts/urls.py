@@ -5,12 +5,10 @@ from accounts import views
 app_name = 'accounts'
 
 urlpatterns = [
-<<<<<<< HEAD
-    path('dashboard/', views.dashboard, name="dashboard"),
-    path('order/', views.order, name="order"),
-=======
-    path('login/',
-    auth_views.LoginView.as_view(template_name='accounts/login.html'),
-    name='login'),
->>>>>>> 5d5cb851e97d24683abef91dd37af188786079a1
+    path('student/',auth_views.LoginView.as_view(template_name='accounts/student/login.html'), name='studentlogin'),
+    path('vendor/',auth_views.LoginView.as_view(template_name='accounts/vendor/login.html'), name='vendorlogin'),
+    path('studentlogin/', views.handleLogin, name='handleStudentLogin'),
+    path('vendorlogin/', views.handleLogin, name='handleStudentLogin'),
+    path('logut/', views.handleLogout, name='handleLogout'),
+    path('home/', views.home, name='home'),
 ]

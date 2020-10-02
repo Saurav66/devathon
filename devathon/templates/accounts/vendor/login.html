@@ -2,11 +2,11 @@
 {% load static %}
 {% block title%}Login{% endblock %}
 {% block css%}
-<link href="{% static '/login/style.css' %}" rel="stylesheet">
+<link href="{% static 'accounts/style.css' %}" rel="stylesheet">
 {% endblock %}
 {% block body %}
-
-<form class="form-signin" method="POST" action="#">
+{% block navbar%} {% endblock %}
+<form class="form-signin" method="POST" action="../vendorlogin/">
     {% csrf_token %}
       <h1 class="h3 mb-3 font-weight-normal">Staff Login</h1>
       <label class="sr-only">Registration number</label>
