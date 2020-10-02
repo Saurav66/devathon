@@ -1,5 +1,4 @@
 from django.shortcuts import render
-
 from django.contrib.auth import authenticate, login
 
 def my_view(request):
